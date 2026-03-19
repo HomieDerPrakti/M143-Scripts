@@ -9,5 +9,5 @@ LAST_FULL_DIR=$(find $BACKUP_DIR -maxdepth 1 -type d | sort | tail -n 1)
 LAST_BACKUP=$(find $LAST_FULL_DIR -maxdepth 1 -type d | sort | tail -n 1)
 TARGET_DIR=${LAST_FULL_DIR}/${DATE}-inc
 
-rsync -ac --link-dest=$LAST_BACKUP $SOURCE_IP:$SOURCE_DIR/ $TARGET_DIR
-rsync -aHc $TARGET_DIR/ $TARGET_IP:$TARGET_DIR
+rsync -ac --mkdir --link-dest=$LAST_BACKUP $SOURCE_IP:$SOURCE_DIR/ $TARGET_DIR
+rsync -aHc --mkdir $TARGET_DIR/ $TARGET_IP:$TARGET_DIR
