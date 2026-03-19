@@ -9,5 +9,5 @@ TARGET_DIR="/home/vmadmin/Patientenakten_Krankenhaus_Bern"
 
 rm -rf /data/backup/*
 
-rsync -ac --mkdir $SOURCE_IP:$SOURCE_DIR/ /data/backup
-rsync -ac --mkdir /data/backup/ $TARGET_IP:$TARGET_DIR
+rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/backup
+rsync -ac --mkpath /data/backup/ $TARGET_IP:$TARGET_DIR
