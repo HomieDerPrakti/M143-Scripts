@@ -9,4 +9,4 @@ TARGET_DIR="/data/backup/full-${DATE}/${DATE}-full"
 rm -rf /data/backup/*
 
 rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ $TARGET_DIR
-rsync -ac --mkpath $TARGET_DIR $TARGET_IP:$TARGET_DIR/../
+rsync -ac --mkpath $TARGET_DIR/ $TARGET_IP:$TARGET_DIR
