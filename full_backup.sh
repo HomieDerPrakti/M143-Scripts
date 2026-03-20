@@ -11,7 +11,8 @@ BACKUP_DIR_ENC="/data/backup_encrypted"
 BACKUP_DIR="/data/backup_decrypted"
 
 # verschlüsseltes Verzeichnis entschlüsselt anhängen
-ssh $TARGET_IP "echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC BACKUP_DIR"
+ssh $TARGET_IP "echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC $BACKUP_DIR"
+echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC $BACKUP_DIR
 
 # Quell- und Zielverzeichnis
 SOURCE_DIR="/home/vmadmin/Patientenakten_Krankenhaus_Bern"
@@ -27,3 +28,4 @@ rsync -ac --mkpath $TARGET_DIR/ $TARGET_IP:$TARGET_DIR
 
 # entschlüsseltes Backupverzeichnis abhängen
 ssh $TARGET_IP "fusermount -u $BACKUP_DIR"
+fusermount -u $BACKUP_DIR

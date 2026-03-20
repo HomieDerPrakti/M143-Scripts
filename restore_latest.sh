@@ -21,7 +21,7 @@ rm -rf /data/restore/*
 # Backup in temporäres Verzeichnis ablegen
 rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/restore
 # Backup von temporärem Verzeichnis in Fileserver wiederherstellen
-rsync -ac --mkpath /data/backup/ $TARGET_IP:$TARGET_DIR
+rsync -ac --mkpath /data/restore/ $TARGET_IP:$TARGET_DIR
 
 # temporäres Verzeichnis aufräumen
 rm rf /data/restore/*
