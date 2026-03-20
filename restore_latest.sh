@@ -8,7 +8,7 @@ BACKUP_DIR_ENC="/data/backup_encrypted"
 BACKUP_DIR="/data/backup_decrypted"
 
 # Backup verzeichnis entschlüsseln
-ssh $SOURCE_IP "echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC $BACKUP_DIR"
+ssh $SOURCE_IP "gocryptfs -passfile /root/.vault-pass $BACKUP_DIR_ENC $BACKUP_DIR"
 
 # Das letzte Backup finden
 LAST_FULL_DIR=$(ssh $SOURCE_IP "find ${BACKUP_DIR} -maxdepth 1 -type d | sort | tail -n 1")

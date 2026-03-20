@@ -11,8 +11,8 @@ BACKUP_DIR_ENC="/data/backup_encrypted"
 BACKUP_DIR="/data/backup_decrypted"
 
 # verschlüsseltes Verzeichnis entschlüsselt anhängen
-ssh $TARGET_IP "echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC $BACKUP_DIR"
-echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /dev/stdin $BACKUP_DIR_ENC $BACKUP_DIR
+ssh $TARGET_IP "gocryptfs -passfile /root/.vault-pass $BACKUP_DIR_ENC $BACKUP_DIR"
+echo $BACKUP_DECRYPT_PW | gocryptfs -passfile /root/.vault-pass $BACKUP_DIR_ENC $BACKUP_DIR
 
 # Quell- und Zielverzeichnis
 SOURCE_DIR="/home/vmadmin/Patientenakten_Krankenhaus_Bern"
