@@ -7,7 +7,9 @@ LAST_FULL_DIR=$(ssh $SOURCE_IP "find ${BACKUP_DIR} -maxdepth 1 -type d | sort | 
 SOURCE_DIR=$(ssh $SOURCE_IP "find ${LAST_FULL_DIR} -maxdepth 1 -type d | sort | tail -n 1")
 TARGET_DIR="/home/vmadmin/Patientenakten_Krankenhaus_Bern"
 
-rm -rf /data/backup/*
+rm -rf /data/restore/*
 
-rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/backup
+rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/restore
 rsync -ac --mkpath /data/backup/ $TARGET_IP:$TARGET_DIR
+
+rm rf /data/restore/*
