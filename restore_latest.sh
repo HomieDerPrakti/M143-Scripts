@@ -15,12 +15,12 @@ LAST_FULL_DIR=$(ssh $SOURCE_IP "find ${BACKUP_DIR} -maxdepth 1 -type d | sort | 
 SOURCE_DIR=$(ssh $SOURCE_IP "find ${LAST_FULL_DIR} -maxdepth 1 -type d | sort | tail -n 1")
 TARGET_DIR="/home/vmadmin/Patientenakten_Krankenhaus_Bern"
 
+# Temporäres Verzeichnis aufräumen
+rm -rf /data/restore/* 2>/dev/null
+
 if [[ "$1" == "--test" ]]; then
     TARGET_IP=""
 fi
-
-# Temporäres Verzeichnis aufräumen
-rm -rf /data/restore/*
 
 # Backup in temporäres Verzeichnis ablegen
 rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/restore
@@ -28,7 +28,7 @@ rsync -ac --mkpath $SOURCE_IP:$SOURCE_DIR/ /data/restore
 rsync -ac --mkpath /data/restore/ ${TARGET_IP}${TARGET_DIR}
 
 # temporäres Verzeichnis aufräumen
-rm rf /data/restore/*
+rm -rf /data/restore/*
 
 # Entschlüsseltes Backupverzeichnis abhängen
 ssh $SOURCE_IP "fusermount -u $BACKUP_DIR"
